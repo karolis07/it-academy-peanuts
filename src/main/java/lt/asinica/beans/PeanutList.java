@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by p998snc on 2016.02.10.
  */
-public class PeanutList {
+public class PeanutList{
     List<Peanut> peanuts = new ArrayList<Peanut>();
     long i = 0;
 

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by p998snc on 2016.02.10.
@@ -17,12 +19,16 @@ import javax.annotation.PostConstruct;
 public class PeanutsService {
 
     private PeanutList peanutList;
+    private PeanutList peanutListTemporary;
 
     @PostConstruct
     public void init() {
         peanutList = new PeanutList();
         peanutList.addPeanut(new Peanut("Karolis"));
         peanutList.addPeanut(new Peanut("Antanas"));
+        peanutList.addPeanut(new Peanut("Jonas"));
+        peanutList.addPeanut(new Peanut("Benas"));
+        peanutList.addPeanut(new Peanut("Laura"));
     }
 
     @RequestMapping("/peanuts")
@@ -50,4 +56,26 @@ public class PeanutsService {
 
     }
 
+    @RequestMapping(value="/peanut/{id}")
+    public Peanut getPeanut(@PathVariable Long id) {
+        return peanutList.getPeanuts().get(id.intValue());
+    }
+
+    @RequestMapping(value="/peanuts/sort")
+    public PeanutList getSortedPeanuts() {
+        Collections.sort(peanutList.getPeanuts());
+        return peanutList;
+    }
+
+    @RequestMapping(value="/peanuts/3rdtask")
+    public PeanutList getIdDividedByThree() {
+        peanutListTemporary = new PeanutList();
+        for(Peanut p : peanutList.getPeanuts()) {
+            if(p.getId()%3 == 0)
+            {
+                peanutListTemporary.addPeanut(p);
+            }
+        }
+        return peanutListTemporary;
+    }
 }

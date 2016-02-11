@@ -3,7 +3,7 @@ package lt.asinica.beans;
 /**
  * Created by p998snc on 2016.02.10.
  */
-public class Peanut {
+public class Peanut implements Comparable{
 
     long id;
     String name;
@@ -26,5 +26,11 @@ public class Peanut {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Peanut peanut = (Peanut) o;
+        return this.name.compareTo(peanut.name);
     }
 }
