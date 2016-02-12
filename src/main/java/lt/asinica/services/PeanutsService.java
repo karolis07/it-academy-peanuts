@@ -48,6 +48,7 @@ public class PeanutsService {
         for(Peanut p : peanutList.getPeanuts()) {
             if(p.getId() == id) {
                 toRemove = p;
+
             }
         }
 
